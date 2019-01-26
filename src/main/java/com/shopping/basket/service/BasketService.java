@@ -6,7 +6,7 @@ import com.shopping.basket.domain.Basket;
 import com.shopping.basket.domain.Item;
 
 public interface BasketService {
-
+	List<Basket> getBaskets();
 	Basket createBasket();
 	Basket getBasket(Long id);
 	Basket addItem(Long id, List<Item> items);

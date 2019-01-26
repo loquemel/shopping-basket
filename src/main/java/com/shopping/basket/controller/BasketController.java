@@ -25,10 +25,16 @@ public class BasketController {
 	@Autowired
 	private BasketService basketService;
 
+	@GetMapping("/basket")
+	public ResponseEntity<List<Basket>> getBaskets() {
+		logger.info("Getting baskets");
+		List<Basket> baskets = basketService.getBaskets();
+		return new ResponseEntity<>(baskets, HttpStatus.OK);
+	}
+
 	@PostMapping("/basket")
 	public ResponseEntity<Basket> createBasket() {
 		logger.info("Creating basket..");
-
 		Basket basket = basketService.createBasket();
 		return new ResponseEntity<>(basket, HttpStatus.OK);
 	}

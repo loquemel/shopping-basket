@@ -1,5 +1,6 @@
 package com.shopping.basket.domain;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -43,6 +44,15 @@ public class Basket {
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	public BigDecimal getTotalPrice() {
+		BigDecimal totalPrice = BigDecimal.ZERO;
+		
+		for(Item item : items) {
+			totalPrice = totalPrice.add(item.getPrice());
+		}
+		return totalPrice;
 	}
 
 	@Override

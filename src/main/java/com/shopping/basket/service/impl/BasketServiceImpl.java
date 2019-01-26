@@ -25,6 +25,11 @@ public class BasketServiceImpl implements BasketService {
 	public static final Logger logger = LoggerFactory.getLogger(BasketServiceImpl.class);
 
 	@Override
+	public List<Basket> getBaskets() {
+		return basketRepository.findAll();
+	}
+
+	@Override
 	public Basket createBasket() {
 		Basket basket = new Basket();
 		return basketRepository.save(basket);
