@@ -33,7 +33,9 @@ public class BasketServiceImpl implements BasketService {
 	public static final Logger logger = LoggerFactory.getLogger(BasketServiceImpl.class);
 
 	@Override
-	public CustomerBasketDTO getBasketsByCustomerId(Long id) {		
+	public CustomerBasketDTO getBasketsByCustomerId(Long id) {
+		logger.info("Getting customer baskets {}", id);
+
 		BigDecimal totalPrice = BigDecimal.ZERO;
 		List<Basket> baskets = basketRepository.findAllByCustomerId(id);
 
@@ -52,6 +54,8 @@ public class BasketServiceImpl implements BasketService {
 
 	@Override
 	public Basket createBasket(Long id) {
+		logger.info("Creating baskets {}", id);
+
 		Basket basket = new Basket();
 		Customer customer = customerRepository.findOneById(id);
 		basket.setCustomerId(customer.getId());
@@ -60,11 +64,14 @@ public class BasketServiceImpl implements BasketService {
 
 	@Override
 	public Basket getBasket(Long id) {
+		logger.info("Getting basket items {}", id);
 		return basketRepository.findOneById(id);
 	}
 
 	@Override
 	public Basket addItem(Long id, List<Item> items) {
+		logger.info("Adding item to basket {} {}", id, items);
+
 		Basket basket = basketRepository.findOneById(id);
 		for (Item item : items) {
 			Item savedItem = itemRepository.findOneById(item.getId());
