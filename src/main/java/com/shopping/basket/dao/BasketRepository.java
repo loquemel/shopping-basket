@@ -9,6 +9,6 @@ import com.shopping.basket.domain.Basket;
 
 @Repository
 public interface BasketRepository extends CrudRepository<Basket, Long> {
-	List<Basket> findAll();
+	List<Basket> findAllByCustomerId(Long id);
 	Basket findOneById(Long id);
 }

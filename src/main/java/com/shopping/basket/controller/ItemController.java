@@ -21,7 +21,7 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 
-	@GetMapping("/items")
+	@GetMapping("/item")
 	public ResponseEntity<List<Item>> getItems() {
 		logger.info("Getting items..");
 		List<Item> items = itemService.getItems();

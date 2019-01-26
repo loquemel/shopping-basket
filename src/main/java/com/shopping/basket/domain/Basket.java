@@ -1,7 +1,7 @@
 package com.shopping.basket.domain;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,12 +19,15 @@ public class Basket {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="basketId")
+	@Column(name = "basketId")
 	private Long id;
 
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="basketId", referencedColumnName="basketId")
-	private List<Item> items;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "basketId", referencedColumnName = "basketId")
+	private Set<Item> items;
+
+	@Column(name = "customerId")
+	private Long customerId;
 
 	public Long getId() {
 		return id;
@@ -34,7 +37,7 @@ public class Basket {
 		this.id = id;
 	}
 
-	public List<Item> getItems() {
+	public Set<Item> getItems() {
 		return items;
 	}
 
@@ -42,17 +45,16 @@ public class Basket {
 		items.add(item);
 	}
 
-	public void setItems(List<Item> items) {
+	public void setItems(Set<Item> items) {
 		this.items = items;
 	}
 
-	public BigDecimal getTotalPrice() {
-		BigDecimal totalPrice = BigDecimal.ZERO;
-		
-		for(Item item : items) {
-			totalPrice = totalPrice.add(item.getPrice());
-		}
-		return totalPrice;
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	@Override
