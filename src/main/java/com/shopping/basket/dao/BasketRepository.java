@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.shopping.basket.domain.Basket;
 
 @Repository
-public interface BasketRepository extends CrudRepository<Basket, Integer> {
+public interface BasketRepository extends CrudRepository<Basket, Long> {
 
+	Basket findOneById(Long id);
 }
