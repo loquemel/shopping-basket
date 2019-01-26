@@ -25,7 +25,7 @@ public class BasketController {
 	@Autowired
 	private BasketService basketService;
 
-	@PostMapping("/basktet")
+	@PostMapping("/basket")
 	public ResponseEntity<Basket> createBasket() {
 		logger.info("Creating basket..");
 
@@ -46,5 +46,4 @@ public class BasketController {
 		Basket basket = basketService.addItem(id, items);
 		return new ResponseEntity<>(basket, HttpStatus.OK);
 	}
-
 }
